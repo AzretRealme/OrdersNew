@@ -10,8 +10,8 @@
     <a th:href="@{/orders/addOder}">
         <button type="button" class="btn btn-primary">Add order</button>
     </a>
-    <a th:href="@{/courier-table}">
-        <button type="button" class="btn btn-primary" style="margin-left: 23px">Couriers</button>
+    <a th:href="@{/index}">
+        <button>Couriers</button>
     </a>
     <table>
         <thead>
@@ -28,7 +28,7 @@
             <th>Status</th>
         </tr>
         </thead>
-        <tbody class="shadow p-3 mb-5 bg-body rounded">
+        <tbody>
         <tr th:each="order : ${orders}">
             <td th:text="${order.id}"></td>
             <td th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy hh:MM')}"></td>

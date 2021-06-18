@@ -20,9 +20,9 @@ public class OrdersController {
     @Autowired
     private OrdersService orderService;
 
-    @GetMapping("/addorder")
+    @GetMapping("/addOrder")
     public String getOrderForm(Orders order){
-        return "addorder";
+        return "addOrder";
     }
 
     @GetMapping("/all")

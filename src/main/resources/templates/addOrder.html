@@ -5,7 +5,7 @@
     <title>Create Order</title>
 </head>
 <body>
-<div class="container my-3">
+<div>
     <form action="#" th:action="@{/}" th:object="${order}" method="post">
         <input class="form-control mb-2 col-4" type="text"  th:field="*{from_address}" placeholder="Start point">
         <input class="form-control mb-2 col-4" type="text"  th:field="*{to_address}" placeholder="Destiny point">

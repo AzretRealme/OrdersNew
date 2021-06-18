@@ -9,7 +9,7 @@
     <h2 th:case="null" style="position: absolute; top: 0; right: 0; font-size:40px">No couriers yet!</h2>
     <div th:case="*">
         <h2>Couriers</h2>
-        <a th:href="@{couriers/backToOrders}">
+        <a th:href="@{/backToOrders}">
             <button type="button" class="btn btn-primary" style="margin-left: 23px">Orders</button>
         </a>
         <table>
@@ -27,14 +27,14 @@
                 <td th:text="${courier.getPhone()}"></td>
                 <td th:text="${courier.getCouriers_statuses()}"></td>
                 <td><a th:href="@{/couriers/{id}/edit(id=${courier.getId()})}">Edit</a></td>
-                    <form th:method="DELETE" th:action="@{/couriers/{id}(id=${courier.getId()})}">
-                        <td><a th:href="@{/couriers/{id}(id=${courier.getId()})}">Delete</a></td> //возможна ошибка
+                    <form th:method="DELETE" th:action="@{/delete/{id}(id=${courier.getId()})}">
+                        <td><a th:href="@{/delete/{id}(id=${courier.getId()})}">Delete</a></td> //возможна ошибка
                     </form>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/couriers/new">Add a new courier</a></p>
+    <p><a href="/new">Add a new courier</a></p>
 </div>
 </body>
 </html>

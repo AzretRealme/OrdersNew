@@ -5,7 +5,7 @@
     <title>Edit courier</title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/couriers/{id}(id = ${courier.getId()})}" th:object="courier">
+<form th:method="PATCH" th:action="@{/update/{id}(id = ${courier.getId()})}" th:object="courier">
 
     <label for="fio">Enter name: </label>
     <input type="text" th:field="*{fio}" id="fio"/>

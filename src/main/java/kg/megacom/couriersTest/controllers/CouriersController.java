@@ -4,13 +4,13 @@ import kg.megacom.couriersTest.dao.CouriersRepo;
 import kg.megacom.couriersTest.dao.Couriers_statusesRepo;
 import kg.megacom.couriersTest.daoService.CouriersService;
 import kg.megacom.couriersTest.models.Couriers;
+import kg.megacom.couriersTest.models.Couriers_statuses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/couriers")
 public class CouriersController {
 
 
@@ -26,10 +26,10 @@ public class CouriersController {
     @Autowired
     private Couriers_statusesRepo couriers_statusesRepo;
 
-    @GetMapping()
+    @GetMapping("/index")
     public String index(Model model){
         model.addAttribute("couriers", couriersService.findAll());
-        return "couriers/index";
+        return "index";
     }
 
     @GetMapping("/backToOrders")
@@ -38,32 +38,33 @@ public class CouriersController {
     }
 
     @GetMapping("/new")
-    public String newCourier(@ModelAttribute("courier") Couriers courier, Model model){
+    public String newCourier(Model model){
+        model.addAttribute(new Couriers());
         model.addAttribute("courierStatus", couriers_statusesRepo.findAll());
-        return "couriers/new";
+        return "courier-new";
     }
 
-    @PostMapping()
+    @PostMapping("/new")
     public String create(@ModelAttribute("courier") Couriers courier){
         couriersService.saveCourier(courier);
-        return "redirect:/couriers";
+        return "redirect:/index";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") long id){
         model.addAttribute("courier", couriersRepo.findById(id).get());
-        return "couriers/edit";
+        return "edit";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/update/{id}")
     public String update(@ModelAttribute("courier") Couriers courier, @PathVariable("id") long id){
         couriersService.updateCourier(id, courier);
-        return "redirect:/couriers";
+        return "redirect:/index";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id){
         couriersService.deleteCourier(id);
-        return "redirect:/couriers";
+        return "redirect:/index";
     }
 }

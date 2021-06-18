@@ -17,10 +17,12 @@ public class Orders {
     @JoinColumn(name = "courier_id", nullable = false)
     private Couriers courier;
 
-
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "from_address_id", nullable = false)
     private Addresses from_address;
 
-
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "to_address_id", nullable = false)
     private Addresses to_address;
 
     @ManyToOne
