@@ -1,12 +1,25 @@
 package kg.megacom.couriersTest.models;
 
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "couriers")
+@Data
 public class Couriers {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String fio;
     private String phone;
+
+    @ManyToOne
+    @JoinColumn(name = "courier_status_id")
     private Couriers_statuses couriers_statuses;
 
-    public Couriers(int id, String fio, String phone, Couriers_statuses couriers_statuses) {
+    public Couriers(long id, String fio, String phone, Couriers_statuses couriers_statuses) {
         this.id = id;
         this.fio = fio;
         this.phone = phone;
@@ -16,11 +29,11 @@ public class Couriers {
     public Couriers() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+<h1>Orders table</h1>
+<div class="container-fluid">
+    <a th:href="@{/orders/addOder}">
+        <button type="button" class="btn btn-primary">Add order</button>
+    </a>
+    <a th:href="@{/courier-table}">
+        <button type="button" class="btn btn-primary" style="margin-left: 23px">Couriers</button>
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <th>Order id</th>
+            <th>Date</th>
+            <th>From address</th>
+            <th>To address</th>
+            <th>Order price</th>
+            <th>Delivery price</th>
+            <th>Courier</th>
+            <th>Admin</th>
+            <th>Comment</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody class="shadow p-3 mb-5 bg-body rounded">
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy hh:MM')}"></td>
+            <td th:text="${order.from_address.getAddress()}"></td>
+            <td th:text="${order.to_address.getAddress()}"></td>
+            <td th:text="${order.ransom_sum}"></td>
+            <td th:text="${order.delivery_price}"></td>
+            <td th:text="${order.courier.getFio()}"></td>
+            <td th:text="${order.admin.getFio()}"></td>
+            <td th:text="${order.comment}"></td>
+            <td th:text="${order.order_statuses.getName()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

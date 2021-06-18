@@ -1,7 +1,17 @@
 package kg.megacom.couriersTest.models;
 
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "admins")
+@Data
 public class Admins {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String login;
     private String password;
     private String fio;
@@ -9,18 +19,18 @@ public class Admins {
     public Admins() {
     }
 
-    public Admins(int id, String login, String password, String fio) {
+    public Admins(long id, String login, String password, String fio) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.fio = fio;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

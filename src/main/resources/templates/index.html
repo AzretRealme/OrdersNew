@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All couriers</title>
+</head>
+<body>
+<div th:switch="${couriers}">
+    <h2 th:case="null" style="position: absolute; top: 0; right: 0; font-size:40px">No couriers yet!</h2>
+    <div th:case="*">
+        <h2>Couriers</h2>
+        <a th:href="@{couriers/backToOrders}">
+            <button type="button" class="btn btn-primary" style="margin-left: 23px">Orders</button>
+        </a>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="courier : ${couriers}">
+                <td th:text="${courier.getFio()}"></td>
+                <td th:text="${courier.getPhone()}"></td>
+                <td th:text="${courier.getCouriers_statuses()}"></td>
+                <td><a th:href="@{/couriers/{id}/edit(id=${courier.getId()})}">Edit</a></td>
+                    <form th:method="DELETE" th:action="@{/couriers/{id}(id=${courier.getId()})}">
+                        <td><a th:href="@{/couriers/{id}(id=${courier.getId()})}">Delete</a></td> //возможна ошибка
+                    </form>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/couriers/new">Add a new courier</a></p>
+</div>
+</body>
+</html>

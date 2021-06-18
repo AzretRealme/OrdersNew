@@ -1,24 +1,64 @@
 package kg.megacom.couriersTest.models;
 
 import java.util.Date;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "orders")
+@Data
 public class Orders {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "courier_id", nullable = false)
     private Couriers courier;
-    private Addresses from_address_id;
-    private Addresses to_address_id;
-    private Order_statuses order_statuse;
+
+
+    private Addresses from_address;
+
+
+    private Addresses to_address;
+
+    @ManyToOne
+    @JoinColumn(name = "order_status_id")
+    private Order_statuses order_statuses;
     private long ransom_sum;
     private long delivery_price;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "admin_id", nullable = false)
     private Admins admin;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "order_date")
     private Date orderDate;
     private String comment;
 
-    public int getId() {
+    public Orders(long id, Couriers courier, Addresses from_address, Addresses to_address, Order_statuses order_statuses, long ransom_sum, long delivery_price, Admins admin, Date orderDate, String comment) {
+        this.id = id;
+        this.courier = courier;
+        this.from_address = from_address;
+        this.to_address = to_address;
+        this.order_statuses = order_statuses;
+        this.ransom_sum = ransom_sum;
+        this.delivery_price = delivery_price;
+        this.admin = admin;
+        this.orderDate = orderDate;
+        this.comment = comment;
+    }
+
+    public Orders() {
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -30,28 +70,28 @@ public class Orders {
         this.courier = courier;
     }
 
-    public Addresses getFrom_address_id() {
-        return from_address_id;
+    public Addresses getFrom_address() {
+        return from_address;
     }
 
-    public void setFrom_address_id(Addresses from_address_id) {
-        this.from_address_id = from_address_id;
+    public void setFrom_address(Addresses from_address) {
+        this.from_address = from_address;
     }
 
-    public Addresses getTo_address_id() {
-        return to_address_id;
+    public Addresses getTo_address() {
+        return to_address;
     }
 
-    public void setTo_address_id(Addresses to_address_id) {
-        this.to_address_id = to_address_id;
+    public void setTo_address(Addresses to_address) {
+        this.to_address = to_address;
     }
 
-    public Order_statuses getOrder_statuse() {
-        return order_statuse;
+    public Order_statuses getOrder_statuses() {
+        return order_statuses;
     }
 
-    public void setOrder_statuse(Order_statuses order_statuse) {
-        this.order_statuse = order_statuse;
+    public void setOrder_statuses(Order_statuses order_statuses) {
+        this.order_statuses = order_statuses;
     }
 
     public long getRansom_sum() {
@@ -91,22 +131,6 @@ public class Orders {
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Orders() {
-    }
-
-    public Orders(int id, Couriers courier, Addresses from_address_id, Addresses to_address_id, Order_statuses order_statuse, long ransom_sum, long delivery_price, Admins admin, Date orderDate, String comment) {
-        this.id = id;
-        this.courier = courier;
-        this.from_address_id = from_address_id;
-        this.to_address_id = to_address_id;
-        this.order_statuse = order_statuse;
-        this.ransom_sum = ransom_sum;
-        this.delivery_price = delivery_price;
-        this.admin = admin;
-        this.orderDate = orderDate;
         this.comment = comment;
     }
 }

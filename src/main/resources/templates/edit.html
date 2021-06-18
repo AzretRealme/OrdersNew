@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit courier</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/couriers/{id}(id = ${courier.getId()})}" th:object="courier">
+
+    <label for="fio">Enter name: </label>
+    <input type="text" th:field="*{fio}" id="fio"/>
+
+    <br/>
+
+    <label for="phone">Enter phone number: </label>
+    <input type="text" th:field="*{phone}" id="phone"/>
+
+    <br/>
+
+    <select th:field="*{couriers_statuses}">
+        <option th:each="courierStatus:${couriers_statuses}" th:value="${courierStatus.getId}" th:text="${courierStatus.getStatus}"></option>
+    </select>
+
+    <br/>
+
+    <input type="submit" value="Update!"/>
+
+</form>
+</body>
+</html>

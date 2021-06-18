@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Order</title>
+</head>
+<body>
+<div class="container my-3">
+    <form action="#" th:action="@{/}" th:object="${order}" method="post">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{from_address}" placeholder="Start point">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{to_address}" placeholder="Destiny point">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{ransom_sum}" placeholder="Order price">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{delivery_price}" placeholder="Delivery price">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{courier}" placeholder="Courier">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{admin}" placeholder="Admin">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{comment}" placeholder="Comments">
+        <input class="form-control mb-2 col-4" type="text"  th:field="*{order_statuses}" placeholder="Order Status">
+        <input type="submit" class="btn btn-success" value="Create!">
+    </form>
+</div>
+
+</body>
+</html>

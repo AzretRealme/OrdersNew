@@ -1,11 +1,21 @@
 package kg.megacom.couriersTest.models;
 
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "addresses")
+@Data
 public class Addresses {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String address;
     private String phone;
 
-    public Addresses(int id, String address, String phone) {
+    public Addresses(long id, String address, String phone) {
         this.id = id;
         this.address = address;
         this.phone = phone;
@@ -14,11 +24,11 @@ public class Addresses {
     public Addresses() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
