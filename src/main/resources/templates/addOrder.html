@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:path="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Create Order</title>
 </head>
 <body>
+<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
+ alt="pyramid">
+
+<!--<h1>esfs</h1>-->
 <div>
-    <form action="#" th:action="@{/}" th:object="${order}" method="post">
+<!--    <form action="#" th:action="@{/}" th:object="${addOrder}" method="post">-->
+        <form th:method="POST" th:action="@{/orders/addOrder}" th:object="${title}">
+
         <input class="form-control mb-2 col-4" type="text"  th:field="*{from_address}" placeholder="Start point">
         <input class="form-control mb-2 col-4" type="text"  th:field="*{to_address}" placeholder="Destiny point">
         <input class="form-control mb-2 col-4" type="text"  th:field="*{ransom_sum}" placeholder="Order price">

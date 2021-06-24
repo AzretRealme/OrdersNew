@@ -5,6 +5,8 @@
     <title>All couriers</title>
 </head>
 <body>
+<img src ="https://cdni.rt.com/russian/images/2018.11/article/5bdad2c2370f2ce84a8b45a1.jpg" alt="pyramid">
+
 <div th:switch="${couriers}">
     <h2 th:case="null" style="position: absolute; top: 0; right: 0; font-size:40px">No couriers yet!</h2>
     <div th:case="*">
@@ -26,10 +28,14 @@
                 <td th:text="${courier.getFio()}"></td>
                 <td th:text="${courier.getPhone()}"></td>
                 <td th:text="${courier.getCouriers_statuses()}"></td>
-                <td><a th:href="@{/couriers/{id}/edit(id=${courier.getId()})}">Edit</a></td>
-                    <form th:method="DELETE" th:action="@{/delete/{id}(id=${courier.getId()})}">
-                        <td><a th:href="@{/delete/{id}(id=${courier.getId()})}">Delete</a></td> //возможна ошибка
-                    </form>
+<!--                <td><a th:href="@{/couriers/{id}/edit(id=${courier.getId()})}">Edit</a></td>-->
+                <td><a th:href="@{/edit/{id}(id=${courier.getId()})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${courier.getId()})}">Delete</a></td>
+
+
+                <!--                    <form th:method="POST" th:action="@{/delete/{id}(id=${courier.getId()})}">-->
+<!--                        <td><a th:href="@{/delete/{id}(id=${courier.getId()})}">Delete</a></td> //возможна ошибка-->
+<!--                    </form>-->
             </tr>
             </tbody>
         </table>

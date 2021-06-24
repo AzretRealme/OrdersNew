@@ -5,21 +5,22 @@
     <title>Edit courier</title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/update/{id}(id = ${courier.getId()})}" th:object="courier">
+
+<form th:method="POST" th:action="@{/update/{id}(id=${courier.id})}" th:object="${courier}">
 
     <label for="fio">Enter name: </label>
     <input type="text" th:field="*{fio}" id="fio"/>
 
     <br/>
 
-    <label for="phone">Enter phone number: </label>
-    <input type="text" th:field="*{phone}" id="phone"/>
+<!--    <label for="phone">Enter phone number: </label>-->
+<!--    <input type="text" th:field="*{phone}" id="phone"/>-->
 
-    <br/>
+<!--    <br/>-->
 
-    <select th:field="*{couriers_statuses}">
-        <option th:each="courierStatus:${couriers_statuses}" th:value="${courierStatus.getId}" th:text="${courierStatus.getStatus}"></option>
-    </select>
+<!--    <select th:field="*{couriers_statuses}">-->
+<!--        <option th:each="courierStatus:${couriers_statuses}" th:value="${courierStatus.getId}" th:text="${courierStatus.getStatus}"></option>-->
+<!--    </select>-->
 
     <br/>
 

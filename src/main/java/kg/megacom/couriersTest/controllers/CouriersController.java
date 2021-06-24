@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 public class CouriersController {
 
@@ -39,10 +41,12 @@ public class CouriersController {
 
     @GetMapping("/new")
     public String newCourier(Model model){
-        model.addAttribute(new Couriers());
-        model.addAttribute("courierStatus", couriers_statusesRepo.findAll());
-        return "courier-new";
+        /*model.addAttribute(new Couriers());
+        model.addAttribute("courierStatus", couriers_statusesRepo.findAll());*/
+        model.addAttribute("courier", new Couriers());
+        return "../templates/courier-new";
     }
+
 
     @PostMapping("/new")
     public String create(@ModelAttribute("courier") Couriers courier){
@@ -50,20 +54,30 @@ public class CouriersController {
         return "redirect:/index";
     }
 
+
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") long id){
-        model.addAttribute("courier", couriersRepo.findById(id).get());
-        return "edit";
+        System.out.println(id);
+        Optional<Couriers> couriers= couriersRepo.findById(id);
+        Couriers couriers1 = null;
+        if (couriers.isPresent()){
+            couriers1 = couriers.get();
+        }
+        System.out.println("cour: "+couriers1);
+        model.addAttribute("courier", couriers1);
+        return "../templates/edit";
     }
 
-    @PatchMapping("/update/{id}")
+
+    @PostMapping("/update/{id}")
     public String update(@ModelAttribute("courier") Couriers courier, @PathVariable("id") long id){
         couriersService.updateCourier(id, courier);
         return "redirect:/index";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id){
+        System.out.println(id);
         couriersService.deleteCourier(id);
         return "redirect:/index";
     }
